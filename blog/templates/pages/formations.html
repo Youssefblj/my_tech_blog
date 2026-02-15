@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Formations{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-uppercase mb-4">Our Formations</h2>
+    <p class="mb-4">Welcome to our training and formation programs! Here’s a selection of our most popular courses:</p>
+
+    <!-- Formation 1 -->
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title">🌐 Web Development Basics</h4>
+            <p class="card-text">
+                Learn how to build responsive websites using HTML, CSS, and JavaScript — the core technologies of the web.
+            </p>
+            <a href="{% url 'web_dev' %}" class="btn btn-primary btn-sm">Read More →</a>
+        </div>
+    </div>
+
+    <!-- Formation 2 -->
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title">🐍 Advanced Django Framework</h4>
+            <p class="card-text">
+                Master Django’s advanced features and learn to create secure, scalable, and dynamic web applications.
+            </p>
+            <a href="{% url 'django_adv' %}" class="btn btn-primary btn-sm">Read More →</a>
+        </div>
+    </div>
+
+    <!-- Formation 3 -->
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title">📊 Python for Data Science</h4>
+            <p class="card-text">
+                Dive into data analysis using Python libraries like Pandas, NumPy, and Matplotlib.
+            </p>
+            <a href="{% url 'python_data' %}" class="btn btn-primary btn-sm">Read More →</a>
+        </div>
+    </div>
+
+    <!-- Formation 4 -->
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title">🎨 UI/UX Design Bootcamp</h4>
+            <p class="card-text">
+                Learn user interface design and user experience strategies to create intuitive digital products.
+            </p>
+            <a href="{% url 'uiux' %}" class="btn btn-primary btn-sm">Read More →</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

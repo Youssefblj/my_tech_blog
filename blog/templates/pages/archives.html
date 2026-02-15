@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Archives{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card border-0 shadow-lg p-4 rounded-4">
+    <div class="card-body">
+      <h2 class="text-center text-primary fw-bold mb-4">
+        🗂️ Blog Archives
+      </h2>
+
+      <p class="fs-5 text-muted text-center mb-4">
+        Browse through our past posts organized by month and year.  
+        Discover what we've been sharing over time and revisit your favorite topics.
+      </p>
+
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <span>📅 September 2025</span>
+          <span class="badge bg-primary rounded-pill">5 posts</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <span>📅 August 2025</span>
+          <span class="badge bg-primary rounded-pill">8 posts</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <span>📅 July 2025</span>
+          <span class="badge bg-primary rounded-pill">4 posts</span>
+        </a>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="{% url 'post_list' %}" class="btn btn-outline-primary rounded-pill px-4">
+          View All Posts
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+/* static/css/site.css */
+.site-header {
+  background: #0b86d1;
+  color: white;
+}
+.card.post-card .card-header {
+  text-align: center;
+  background: #f7f7f7;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.meta-line {
+  font-size: 0.9rem;
+  color: #666;
+}
+.card .card-body .btn { margin-right: 6px; }
+

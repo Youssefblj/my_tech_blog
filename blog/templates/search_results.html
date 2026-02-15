@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4 text-center">Search Results</h2>
+
+  {% if query %}
+    <p>Results for: <strong>{{ query }}</strong></p>
+  {% endif %}
+
+  {% if posts %}
+    {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-header bg-light">
+          <strong>{{ post.title }}</strong>
+        </div>
+        <div class="card-body">
+          <p><small>By {{ post.author.username }} | {{ post.created_at|date:"F j, Y, g:i a" }}</small></p>
+         {% if post.excerpt %}
+  <p>{{ post.excerpt }}</p>
+{% else %}
+  <p>{{ post.content|truncatechars:250 }}</p>
+{% endif %}
+
+
+          <div class="d-flex justify-content-end">
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Read More →</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="text-muted">No posts found for your search.</p>
+  {% endif %}
+{% endblock %}

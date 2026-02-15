@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Title Of Your Blog Here !{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'css/site.css' %}" rel="stylesheet">
+
+  <style>
+    .site-header {
+      background-color: #0078d7;
+      color: white;
+      font-weight: bold;
+    }
+    .sidebar-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .sidebar-card .card-header {
+      background-color: #0062cc;
+      color: white;
+      font-weight: 500;
+      text-align: center;
+    }
+    .sidebar-btn {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 5px;
+      font-weight: 500;
+      border-radius: 0;
+      transition: all 0.2s;
+    }
+    .sidebar-btn:hover {
+      background-color: #0d6efd;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header text-center py-3">
+    <h1 class="m-0">Title Of Your Blog Here !</h1>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsMain">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'archives' %}">Archives</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'projects' %}">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'news' %}">News</a></li>
+<!-- Dropdown menu for Formations -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="formationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Formations
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="formationsDropdown">
+    <li><a class="dropdown-item" href="{% url 'formations' %}">All Formations</a></li>
+    <li><a class="dropdown-item" href="{% url 'web_dev' %}">Web Development Basics</a></li>
+    <li><a class="dropdown-item" href="{% url 'django_adv' %}">Advanced Django Framework</a></li>
+    <li><a class="dropdown-item" href="{% url 'python_data' %}">Python for Data Science</a></li>
+    <li><a class="dropdown-item" href="{% url 'uiux' %}">UI/UX Design Bootcamp</a></li>
+  </ul>
+</li>
+
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+        </ul>
+
+        <form class="d-flex" method="get" action="{% url 'search_results' %}">
+          <input class="form-control me-2" type="search" name="q" placeholder="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Page layout -->
+  <div class="container my-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <aside class="col-md-3 mb-4">
+        {% block sidebar %}
+        <div class="card sidebar-card">
+          <div class="card-header">Main Menu</div>
+          <div class="card-body">
+            <a href="{% url 'home' %}" class="btn btn-secondary sidebar-btn">Home</a>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary sidebar-btn">Blog</a>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary sidebar-btn">All Posts</a>
+
+            {% if user.is_authenticated %}
+              <a href="{% url 'user_posts' %}" class="btn btn-secondary sidebar-btn">My Posts</a>
+              <a href="{% url 'post_create' %}" class="btn btn-secondary sidebar-btn">Add New Post</a>
+             <form method="post" action="{% url 'logout' %}">
+             {% csrf_token %}
+             <button type="submit" class="btn btn-danger sidebar-btn">Logout</button>
+             </form>
+
+            {% else %}
+              <a href="{% url 'login' %}" class="btn btn-outline-secondary sidebar-btn">Login</a>
+              <a href="{% url 'register' %}" class="btn btn-outline-secondary sidebar-btn">Register</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endblock %}
+      </aside>
+
+      <!-- Main content -->
+      <main class="col-md-9">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 text-muted">
+    © Your Blog
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+</body>
+</html>

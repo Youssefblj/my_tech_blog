@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    
+        <!-- Sidebar (facultatif : tu peux la retirer ou la compléter) -->
+        <div class="col-md-3">
+                
+                <div class="list-group list-group-flush text-center">
+                    
+              
+            </div>
+        </div>
+
+        <!-- Main article -->
+        <div class="col-md-9">
+            <article class="card">
+                <div class="card-header text-uppercase">
+                    {{ post.category.name|default:"Post" }}
+                </div>
+                <div class="card-body">
+                    <h2>{{ post.title }}</h2>
+                    <p class="text-muted">
+                        By {{ post.author.username }} | {{ post.created_at|date:"F j, Y, g:i a" }}
+                    </p>
+
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" class="img-fluid mb-3 rounded" alt="{{ post.title }}">
+                    {% endif %}
+
+                    <!-- ✅ Voici le contenu complet -->
+                    <div class="mt-3">
+                        {{ post.content|linebreaks }}
+                    </div>
+
+                    <!-- Boutons d'édition -->
+                    {% if request.user.is_authenticated and request.user == post.author or request.user.is_staff %}
+                        <div class="mt-4">
+                            <a href="{% url 'post_edit' slug=post.slug %}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{% url 'post_delete' slug=post.slug %}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

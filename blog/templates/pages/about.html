@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card border-0 shadow-lg p-4 rounded-4">
+    <div class="card-body">
+      <h2 class="text-center text-primary fw-bold mb-4">
+        🌟 About Us
+      </h2>
+
+      <p class="fs-5 text-muted">
+        Welcome to <strong>Your Blog</strong> — a space where <span class="text-primary fw-semibold">technology, education, and creativity</span> meet.
+        Our platform brings together passionate learners, developers, and innovators from around the world.
+      </p>
+
+      <p class="fs-5 text-muted">
+        We are dedicated to creating <strong>high-quality tutorials</strong>, 
+        insightful <strong>articles</strong>, and practical <strong>projects</strong> 
+        that empower individuals to grow their skills in programming, design, and digital innovation.
+      </p>
+
+      <div class="my-4">
+        <h4 class="text-secondary fw-semibold mb-3">💡 Our Mission</h4>
+        <p class="fs-6 text-muted">
+          To make learning <strong>accessible, engaging, and practical</strong> for everyone.
+          Whether you're a beginner taking your first steps in coding or a professional exploring new technologies,
+          we aim to provide the knowledge and inspiration you need to succeed.
+        </p>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg rounded-pill shadow-sm px-4">
+          Contact Our Team
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

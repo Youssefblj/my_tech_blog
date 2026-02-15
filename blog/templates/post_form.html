@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="card shadow-lg border-0 p-5">
+  <h2 class="mb-4 text-primary fw-bold text-center"> Add New Post</h2>
+
+  <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+    {% csrf_token %}
+    
+    <!-- Title + Category in same row -->
+    <div class="row mb-3">
+      <div class="col-md-8">
+        <label for="id_title" class="form-label fw-semibold">Title</label>
+        {{ form.title|add_class:"form-control"|attr:"placeholder:Enter your post title here..." }}
+        <div class="form-text text-muted">A short, descriptive title for your article.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="id_category" class="form-label fw-semibold">Category</label>
+        {{ form.category|add_class:"form-select" }}
+      </div>
+    </div>
+
+    <!-- Excerpt -->
+    <div class="mb-3">
+      <label for="id_excerpt" class="form-label fw-semibold">Excerpt</label>
+      {{ form.excerpt|add_class:"form-control"|attr:"rows:2 placeholder:Write a short summary of your post..." }}
+      <div class="form-text text-muted">This will appear as a preview for your post.</div>
+    </div>
+
+    <!-- Content -->
+    <div class="mb-3">
+      <label for="id_content" class="form-label fw-semibold">Content</label>
+      {{ form.content|add_class:"form-control"|attr:"rows:8 placeholder:Write the full content of your article here..." }}
+    </div>
+
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label for="id_image" class="form-label fw-semibold">Image</label>
+      {{ form.image|add_class:"form-control" }}
+      <div class="form-text text-muted">Optional: upload a featured image for your post.</div>
+    </div>
+
+    <!-- Publish checkbox -->
+    <div class="form-check mb-4">
+      {{ form.is_published|add_class:"form-check-input" }}
+      <label class="form-check-label fw-semibold" for="id_is_published">Publish immediately</label>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-center gap-3">
+      <button type="submit" class="btn btn-primary px-4">
+        <i class="bi bi-save"></i> Save Post
+      </button>
+      <a href="{% url 'post_list' %}" class="btn btn-secondary px-4">
+        <i class="bi bi-x-circle"></i> Cancel
+      </a>
+    </div>
+
+  </form>
+</div>
+{% endblock %}

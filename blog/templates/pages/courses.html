@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">🎓 Our Courses</h2>
+    <p class="text-muted fs-5">
+      Learn with our carefully designed programs covering the latest technologies and frameworks.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Web Development -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body text-center">
+          <div class="display-4 mb-3">💻</div>
+          <h4 class="fw-bold text-primary">Web Development</h4>
+          <p class="text-muted">
+            Master HTML, CSS, JavaScript, and Django to build modern, responsive websites from scratch.
+          </p>
+          <a href="https://www.coursera.org/specializations/web-design"
+             target="_blank"
+             class="btn btn-outline-primary rounded-pill">
+             Explore Course
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artificial Intelligence -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body text-center">
+          <div class="display-4 mb-3">🤖</div>
+          <h4 class="fw-bold text-primary">Artificial Intelligence Basics</h4>
+          <p class="text-muted">
+            Learn the fundamentals of AI, including machine learning, neural networks, and data processing.
+          </p>
+          <a href="https://www.edx.org/course/artificial-intelligence-ai"
+             target="_blank"
+             class="btn btn-outline-primary rounded-pill">
+             Explore Course
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile App Development -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body text-center">
+          <div class="display-4 mb-3">📱</div>
+          <h4 class="fw-bold text-primary">Mobile App Development</h4>
+          <p class="text-muted">
+            Build powerful cross-platform mobile apps using Flutter and Dart.
+          </p>
+          <a href="https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/"
+             target="_blank"
+             class="btn btn-outline-primary rounded-pill">
+             Explore Course
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

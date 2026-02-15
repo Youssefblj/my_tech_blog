@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Home - Blog{% endblock %}
+{% block content %}
+  {% if posts %}
+    {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-header text-center text-uppercase">{{ post.title }}</div>
+        <div class="card-body">
+          <p><small>By {{ post.author.username }} | {{ post.created_at|date:"F j, Y, g:i a" }}</small></p>
+         {% if post.excerpt %}
+  <p>{{ post.excerpt }}</p>
+{% else %}
+  <p>{{ post.content|truncatechars:250 }}</p>
+{% endif %}
+
+          <div class="d-flex justify-content-end">
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm me-2">Read More →</a>
+            {% if request.user == post.author or request.user.is_staff %}
+              <a href="{% url 'post_edit' slug=post.slug %}" class="btn btn-success btn-sm me-2">Edit</a>
+              <a href="{% url 'post_delete' slug=post.slug %}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No posts yet.</p>
+  {% endif %}
+{% endblock %}
